@@ -1,13 +1,11 @@
 import numpy as np
-from sympy import legendre
-
 from Node import Node
 from collections import Counter
 
 
 
 
-class DesicionTreeClassifier:
+class DecisionTreeClassifier:
     @staticmethod
     def Entropy(y):
         count_of_labels = np.bincount(y)
@@ -70,7 +68,7 @@ class DesicionTreeClassifier:
 
     def _information_gain(self, y, X_column, split_thresh):
         # parent loss
-        parent_entropy = DesicionTreeClassifier.Entropy(y)
+        parent_entropy = DecisionTreeClassifier.Entropy(y)
 
         # generate split
         left_idxs, right_idxs = self._split(X_column, split_thresh)
@@ -81,7 +79,7 @@ class DesicionTreeClassifier:
         # compute the weighted avg. of the loss for the children
         n = len(y)
         n_l, n_r = len(left_idxs), len(right_idxs)
-        e_l, e_r = DesicionTreeClassifier.Entropy(y[left_idxs]), DesicionTreeClassifier.Entropy(y[right_idxs])
+        e_l, e_r = DecisionTreeClassifier.Entropy(y[left_idxs]), DecisionTreeClassifier.Entropy(y[right_idxs])
         child_entropy = (n_l / n) * e_l + (n_r / n) * e_r
 
         # information gain is difference in loss before vs. after split
@@ -89,9 +87,9 @@ class DesicionTreeClassifier:
         return ig
 
     def _split(self, X_column, split_thresh):
-        left_idxs = np.argwhere(X_column <= split_thresh).flatten()
-        right_idxs = np.argwhere(X_column > split_thresh).flatten()
-        return left_idxs, right_idxs
+        left_idx = np.argwhere(X_column <= split_thresh).flatten()
+        right_idx = np.argwhere(X_column > split_thresh).flatten()
+        return left_idx, right_idx
 
     def _traverse_tree(self, x, node):
         if node.is_leaf_node():

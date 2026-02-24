@@ -2,7 +2,6 @@ from sklearn import datasets
 from svm import SVM
 from sklearn.model_selection import train_test_split
 import numpy as np
-
 dataset = datasets.load_breast_cancer()
 X, Y = dataset.data, dataset.target
 # print(Y)

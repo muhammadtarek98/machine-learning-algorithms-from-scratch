@@ -1,6 +1,5 @@
 import numpy as np
 from collections import Counter
-
 np.random.seed(42)
 class Knn:
     def __init__(self, k=3):
@@ -8,6 +7,8 @@ class Knn:
         k: num of nearest neighbours
         """
         self.k = k
+        self.X_train = None
+        self.Y_train = None
 
     @staticmethod
     def euclidean_distance(x1, x2):

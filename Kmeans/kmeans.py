@@ -1,8 +1,5 @@
 import numpy as np
-
 np.random.seed(42)
-
-
 class Kmeans:
     @staticmethod
     def euclidean_distance(x1, x2):
